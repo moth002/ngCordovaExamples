@@ -15,5 +15,6 @@
   <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.3.3" />
   <gap:plugin name="nl.x-services.plugins.insomnia" version="4.0.1" />
   <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
+  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
   <vs:platformSpecificValues />
 </widget>
