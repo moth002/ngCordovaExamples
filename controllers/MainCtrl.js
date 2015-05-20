@@ -2,7 +2,7 @@
     .controller('mainCtrl', ['$scope', '$cordovaDialogs', '$cordovaBluetoothSerial',
     function ($scope, $cordovaDialogs, $cordovaBluetoothSerial) {
         $scope.btnClick = function() {
-            $cordovaBluetoothSerial.showBluetoothSettings().then(
+            $cordovaBluetoothSerial.enable().then(
               function () {
                   $cordovaDialogs.alert("Bluetooth LE is enabled", "Bluetooth LE", "GREAT!");
               },
