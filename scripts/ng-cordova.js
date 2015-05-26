@@ -5,8 +5,7 @@ angular.module('ngCordova', [
 
 
 angular.module('ngCordova.plugins', [
-	 'bluetoothSerial',
-	 'dialogs'
+	 'ngCordova.plugins.bluetoothSerial'
 ]);
 
 //#### Begin Individual Plugin Code ####
@@ -14,7 +13,7 @@ angular.module('ngCordova.plugins', [
 // install   :     cordova plugin add https://github.com/don/BluetoothSerial.git
 // link      :     https://github.com/don/BluetoothSerial
 
-angular.module('bluetoothSerial', [])
+angular.module('ngCordova.plugins.bluetoothSerial', [])
 
   .factory('$cordovaBluetoothSerial', ['$q', '$window', function ($q, $window) {
 
@@ -220,70 +219,6 @@ angular.module('bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      }
-    };
-  }]);
-// install   :     cordova plugin add cordova-plugin-dialogs
-// link      :     https://github.com/apache/cordova-plugin-dialogs
-
-angular.module('dialogs', [])
-
-  .factory('$cordovaDialogs', ['$q', '$window', function ($q, $window) {
-
-    return {
-      alert: function (message, title, buttonName) {
-        var q = $q.defer();
-
-        if (!$window.navigator.notification) {
-          $window.alert(message);
-          q.resolve();
-        } else {
-          navigator.notification.alert(message, function () {
-            q.resolve();
-          }, title, buttonName);
-        }
-
-        return q.promise;
-      },
-
-      confirm: function (message, title, buttonLabels) {
-        var q = $q.defer();
-
-        if (!$window.navigator.notification) {
-          if ($window.confirm(message)) {
-            q.resolve(1);
-          } else {
-            q.resolve(2);
-          }
-        } else {
-          navigator.notification.confirm(message, function (buttonIndex) {
-            q.resolve(buttonIndex);
-          }, title, buttonLabels);
-        }
-
-        return q.promise;
-      },
-
-      prompt: function (message, title, buttonLabels, defaultText) {
-        var q = $q.defer();
-
-        if (!$window.navigator.notification) {
-          var res = $window.prompt(message, defaultText);
-          if (res !== null) {
-            q.resolve({input1: res, buttonIndex: 1});
-          } else {
-            q.resolve({input1: res, buttonIndex: 2});
-          }
-        } else {
-          navigator.notification.prompt(message, function (result) {
-            q.resolve(result);
-          }, title, buttonLabels, defaultText);
-        }
-        return q.promise;
-      },
-
-      beep: function (times) {
-        return navigator.notification.beep(times);
       }
     };
   }]);

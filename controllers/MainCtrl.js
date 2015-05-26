@@ -1,10 +1,12 @@
 ﻿angular.module('myApp')
-    .controller('mainCtrl', ['$scope', '$cordovaDialogs', '$cordovaBluetoothSerial',
-    function ($scope, $cordovaDialogs, $cordovaBluetoothSerial) {
-        $scope.btnClick = function() {
-            $cordovaBluetoothSerial.enable().then(
-              function () {
-                  alert("Bluetooth LE is enabled", "Bluetooth LE", "GREAT!");
+    .controller('mainCtrl', ['$scope', '$cordovaBluetoothSerial',
+    function ($scope, $cordovaBluetoothSerial) {
+        $scope.btnClick = function () {
+            alert('test');
+            //$cordovaBluetoothSerial.list(function (devices) { alert(devices); }, function () { alert('false'); });
+            $cordovaBluetoothSerial.list().then(
+              function (devices) {
+                  alert(devices[0].id);
               },
               function () {
                   alert("Bluetooth LE is NOT enabled", "Bluetooth LE", "Oops!");
